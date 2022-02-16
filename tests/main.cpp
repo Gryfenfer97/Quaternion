@@ -15,3 +15,12 @@ TEST(arithmetic, multiplication)
     quaternion::Quaternion<int> expectedResult(1, 7, -3, 1);
     EXPECT_EQ(q1*q2, expectedResult);
 }
+
+TEST(litterals, litterals)
+{
+    using namespace quaternion::literals;
+        
+    quaternion::Quaternion<int> q = 2 + 1_i + 4_k - 90_j;
+    quaternion::Quaternion<int> expectedResult(2, 1, -90, 4);
+    EXPECT_EQ(q, expectedResult);
+}

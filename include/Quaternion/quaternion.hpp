@@ -53,6 +53,12 @@ namespace quaternion{
     constexpr Quaternion<T> operator/(const Quaternion<T>& lhs, const Quaternion<T>& rhs);
 
     template<typename T>
+    constexpr Quaternion<T> operator+(const Quaternion<T>& lhs, const T& rhs);
+    
+    template<typename T>
+    constexpr Quaternion<T> operator+(const T& lhs, const Quaternion<T>& rhs);
+    
+    template<typename T>
     constexpr Quaternion<T> conj(const Quaternion<T>& q);
 
     template<typename T>
@@ -81,6 +87,21 @@ namespace quaternion{
 
     template<typename T>
     bool operator!=(const Quaternion<T>& lhs, const Quaternion<T>& rhs);        
+
+
+    namespace literals{
+        constexpr Quaternion<int> operator""_i(unsigned long long arg);
+
+        constexpr Quaternion<int> operator""_j(unsigned long long arg);
+        
+        constexpr Quaternion<int> operator""_k(unsigned long long arg);
+        
+        constexpr Quaternion<float> operator""_i(long double arg);
+
+        constexpr Quaternion<float> operator""_j(long double arg);
+
+        constexpr Quaternion<float> operator""_k(long double arg);
+    }
 
 }
 

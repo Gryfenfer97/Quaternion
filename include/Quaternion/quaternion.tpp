@@ -58,7 +58,7 @@ namespace quaternion{
 
     template<typename T>
     constexpr Quaternion<T>& Quaternion<T>::operator+=(const T& rhs){
-        *this = Quaternion(m_a + rhs, m_b, m_c, m_d);
+        *this = Quaternion(m_a + static_cast<T>(rhs), m_b, m_c, m_d);
         return *this;
     }
 
@@ -137,6 +137,20 @@ namespace quaternion{
     }
 
     template<typename T>
+    constexpr Quaternion<T> operator+(const Quaternion<T>& lhs, const T& rhs){
+        Quaternion<T> r = lhs;
+        r += rhs;
+        return r;
+    }
+
+    template<typename T>
+    constexpr Quaternion<T> operator+(const T& lhs, const Quaternion<T>& rhs){
+        Quaternion<T> r = rhs;
+        r += lhs;
+        return r;
+    }
+
+    template<typename T>
     constexpr Quaternion<T> conj(const Quaternion<T>& q){
         return Quaternion(
             +q.a(),
@@ -201,6 +215,34 @@ namespace quaternion{
     bool operator!=(const Quaternion<T>& lhs, const Quaternion<T>& rhs){
         return !(rhs == lhs);
     }
+    
+    namespace literals
+    {
+        constexpr Quaternion<int> operator""_i(unsigned long long arg){
+            return Quaternion<int>(0, static_cast<int>(arg), 0, 0);
+        }
+
+        constexpr Quaternion<int> operator""_j(unsigned long long arg){
+            return Quaternion<int>(0, static_cast<int>(arg), 0);
+        }
+
+        constexpr Quaternion<int> operator""_k(unsigned long long arg){
+            return Quaternion<int>(0, 0, static_cast<int>(arg));
+        }
 
 
+        constexpr Quaternion<float> operator""_i(long double arg){
+            return Quaternion<float>(0.0F, static_cast<float>(arg), 0.0F, 0.0F);
+        }
+
+        constexpr Quaternion<float> operator""_j(long double arg){
+            return Quaternion<float>(0.0F, 0.0F, static_cast<float>(arg), 0.0F);
+        }
+    
+        constexpr Quaternion<float> operator""_k(long double arg){
+            return Quaternion<float>(0.0F, 0.0F, static_cast<float>(arg));
+        }
+    
+    }
+    
 }
