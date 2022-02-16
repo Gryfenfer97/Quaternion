@@ -19,15 +19,26 @@ namespace quaternion{
         constexpr Quaternion<T>& operator-=(const Quaternion<T>& rhs);
         constexpr Quaternion<T>& operator*=(const Quaternion<T>& rhs);
         constexpr Quaternion<T>& operator/=(const Quaternion<T>& rhs);
-        
+
+        constexpr Quaternion<T>& operator+=(const T& rhs);
+        constexpr Quaternion<T>& operator-=(const T& rhs);
+        constexpr Quaternion<T>& operator*=(const T& rhs);
         constexpr Quaternion<T>& operator/=(const T& rhs);
+        
         constexpr Quaternion<T>& operator=(const Quaternion<T>& x);
+        constexpr Quaternion<T>& operator=(const T& x);
 
         constexpr T a() const{return m_a;}
         constexpr T b() const{return m_b;}
         constexpr T c() const{return m_c;}
         constexpr T d() const{return m_d;}
     };
+
+    template<typename T>
+    constexpr Quaternion<T> operator+(const Quaternion<T>& val);
+
+    template<typename T>
+    constexpr Quaternion<T> operator-(const Quaternion<T>& val);
 
     template<typename T>
     constexpr Quaternion<T> operator+(const Quaternion<T>& lhs, const Quaternion<T>& rhs);
@@ -37,12 +48,39 @@ namespace quaternion{
     
     template<typename T>
     constexpr Quaternion<T> operator*(const Quaternion<T>& lhs, const Quaternion<T>& rhs);
+    
+    template<typename T>
+    constexpr Quaternion<T> operator/(const Quaternion<T>& lhs, const Quaternion<T>& rhs);
 
     template<typename T>
     constexpr Quaternion<T> conj(const Quaternion<T>& q);
 
     template<typename T>
+    constexpr Quaternion<T> versor(const Quaternion<T>& q);
+
+    template<typename T>
+    constexpr Quaternion<T> exp(const Quaternion<T>& q);
+
+    template<typename T>
+    constexpr Quaternion<T> log(const Quaternion<T>& q);
+
+    template<typename T>
+    constexpr Quaternion<T> log10(const Quaternion<T>& q);
+
+    template<typename T>
+    constexpr Quaternion<T> pow(const Quaternion<T>& x, const Quaternion<T>& y);
+
+    template<typename T, typename U>
+    constexpr Quaternion<T> pow(const Quaternion<T>& q, const U& x);
+
+    template<typename T>
+    constexpr Quaternion<T> sqrt(const Quaternion<T>& q);
+
+    template<typename T>
     bool operator==(const Quaternion<T>& lhs, const Quaternion<T>& rhs);        
+
+    template<typename T>
+    bool operator!=(const Quaternion<T>& lhs, const Quaternion<T>& rhs);        
 
 }
 
