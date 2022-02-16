@@ -166,6 +166,11 @@ namespace quaternion{
     } 
 
     template<typename T>
+    constexpr Quaternion<T> inv(const Quaternion<T>& q){
+        return conj(q)/q.norm();
+    }
+
+    template<typename T>
     constexpr Quaternion<T> exp(const Quaternion<T>& q){
         auto imag = imag(q);
         auto imaginaryNorm = norm(imag);
@@ -200,6 +205,11 @@ namespace quaternion{
     template<typename T>
     constexpr Quaternion<T> sqrt(const Quaternion<T>& q){
         return pow(q, 0.5);
+    }
+
+    template<typename T, typename U>
+    constexpr T geodesicNorm(const Quaternion<T>& p, const Quaternion<U>& q){
+        return log(inv(p) * q).norm();
     }
 
     template<typename T>

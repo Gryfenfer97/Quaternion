@@ -65,6 +65,9 @@ namespace quaternion{
     constexpr Quaternion<T> versor(const Quaternion<T>& q);
 
     template<typename T>
+    constexpr Quaternion<T> inv(const Quaternion<T>& q);
+
+    template<typename T>
     constexpr Quaternion<T> exp(const Quaternion<T>& q);
 
     template<typename T>
@@ -81,6 +84,9 @@ namespace quaternion{
 
     template<typename T>
     constexpr Quaternion<T> sqrt(const Quaternion<T>& q);
+
+    template<typename T, typename U>
+    constexpr T geodesicNorm(const Quaternion<T>& p, const Quaternion<U>& q);
 
     template<typename T>
     bool operator==(const Quaternion<T>& lhs, const Quaternion<T>& rhs);        
