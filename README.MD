@@ -8,11 +8,13 @@ Quaternion is an open-source modern C++ library that allow you to safely manipul
 #include <Quaternion/quaternion.hpp>
 
 int main(){
+    using namespace quaternion::literals;
+
     auto q1 = 1 + 2_i + 3_j - 1_k;
     std::cout << q1.b() << std::endl; // print 2
     auto q2 = 1 + 2_k;
     auto q3 = q1 * q2;
-    std::cout << q3.m_d() << std::endl; // print 8
+    std::cout << q3.d() << std::endl; // print 8
 }
 
 ```
