@@ -223,11 +223,11 @@ namespace quaternion{
         }
 
         constexpr Quaternion<int> operator""_j(unsigned long long arg){
-            return Quaternion<int>(0, static_cast<int>(arg), 0);
+            return Quaternion<int>(0, 0, static_cast<int>(arg), 0);
         }
 
         constexpr Quaternion<int> operator""_k(unsigned long long arg){
-            return Quaternion<int>(0, 0, static_cast<int>(arg));
+            return Quaternion<int>(0, 0, 0, static_cast<int>(arg));
         }
 
 
