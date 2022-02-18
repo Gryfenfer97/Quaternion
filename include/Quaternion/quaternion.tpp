@@ -149,6 +149,47 @@ namespace quaternion{
         r += lhs;
         return r;
     }
+    
+    template<typename T>
+    constexpr Quaternion<T> operator-(const Quaternion<T>& lhs, const T& rhs){
+        Quaternion<T> r = lhs;
+        r -= rhs;
+        return r;
+    }
+ 
+    template<typename T>
+    constexpr Quaternion<T> operator-(const T& lhs, const Quaternion<T>& rhs){
+        Quaternion<T> r = rhs;
+        r = -1*r + lhs;
+        return r;
+    }
+    
+    template<typename T>
+    constexpr Quaternion<T> operator*(const Quaternion<T>& lhs, const T& rhs){
+        Quaternion<T> r = lhs;
+        r *= rhs;
+        return r;
+    } 
+    
+    template<typename T>
+    constexpr Quaternion<T> operator*(const T& lhs, const Quaternion<T>& rhs){
+        Quaternion<T> r = rhs;
+        r *= lhs;
+        return r;
+    }
+    
+    template<typename T>
+    constexpr Quaternion<T> operator/(const Quaternion<T>& lhs, const T& rhs){
+        Quaternion<T> r = lhs;
+        r /= rhs;
+        return r;
+    }
+    
+    template<typename T>
+    constexpr Quaternion<T> operator/(const T& lhs, const Quaternion<T>& rhs){
+        return lhs / inv(rhs); 
+        
+    }
 
     template<typename T>
     constexpr Quaternion<T> conj(const Quaternion<T>& q){
