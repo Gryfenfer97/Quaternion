@@ -1,7 +1,14 @@
 #pragma once
+#include <type_traits>
+#include <concepts>
 
 namespace quaternion{
-    template<typename T>
+
+    namespace internal{
+        template<typename T>
+        concept Number = std::is_integral_v<T> || std::is_floating_point_v<T>;
+    }
+    template<internal::Number T>
     class Quaternion{
     private:
         T m_a;
@@ -24,7 +31,7 @@ namespace quaternion{
         constexpr Quaternion<T>& operator-=(const T& rhs);
         constexpr Quaternion<T>& operator*=(const T& rhs);
         constexpr Quaternion<T>& operator/=(const T& rhs);
-        
+
         constexpr Quaternion<T>& operator=(const Quaternion<T>& x);
         constexpr Quaternion<T>& operator=(const T& x);
 
@@ -34,92 +41,92 @@ namespace quaternion{
         constexpr T d() const{return m_d;}
     };
 
-    template<typename T>
+    template<internal::Number T>
     constexpr Quaternion<T> operator+(const Quaternion<T>& val);
 
-    template<typename T>
+    template<internal::Number T>
     constexpr Quaternion<T> operator-(const Quaternion<T>& val);
 
-    template<typename T>
+    template<internal::Number T>
     constexpr Quaternion<T> operator+(const Quaternion<T>& lhs, const Quaternion<T>& rhs);
 
-    template<typename T>
+    template<internal::Number T>
     constexpr Quaternion<T> operator-(const Quaternion<T>& lhs, const Quaternion<T>& rhs);
-    
-    template<typename T>
+
+    template<internal::Number T>
     constexpr Quaternion<T> operator*(const Quaternion<T>& lhs, const Quaternion<T>& rhs);
-    
-    template<typename T>
+
+    template<internal::Number T>
     constexpr Quaternion<T> operator/(const Quaternion<T>& lhs, const Quaternion<T>& rhs);
 
-    template<typename T>
+    template<internal::Number T>
     constexpr Quaternion<T> operator+(const Quaternion<T>& lhs, const T& rhs);
-    
-    template<typename T>
+
+    template<internal::Number T>
     constexpr Quaternion<T> operator+(const T& lhs, const Quaternion<T>& rhs);
 
-    template<typename T>
+    template<internal::Number T>
     constexpr Quaternion<T> operator-(const Quaternion<T>& lhs, const T& rhs);
- 
-    template<typename T>
-    constexpr Quaternion<T> operator-(const T& lhs, const Quaternion<T>& rhs);   
-    
-    template<typename T>
-    constexpr Quaternion<T> operator*(const Quaternion<T>& lhs, const T& rhs);   
-    
-    template<typename T>
+
+    template<internal::Number T>
+    constexpr Quaternion<T> operator-(const T& lhs, const Quaternion<T>& rhs);
+
+    template<internal::Number T>
+    constexpr Quaternion<T> operator*(const Quaternion<T>& lhs, const T& rhs);
+
+    template<internal::Number T>
     constexpr Quaternion<T> operator*(const T& lhs, const Quaternion<T>& rhs);
-    
-    template<typename T>
-    constexpr Quaternion<T> operator/(const Quaternion<T>& lhs, const T& rhs); 
-    
-    template<typename T>
+
+    template<internal::Number T>
+    constexpr Quaternion<T> operator/(const Quaternion<T>& lhs, const T& rhs);
+
+    template<internal::Number T>
     constexpr Quaternion<T> operator/(const T& lhs, const Quaternion<T>& rhs);
 
-    template<typename T>
+    template<internal::Number T>
     constexpr Quaternion<T> conj(const Quaternion<T>& q);
 
-    template<typename T>
+    template<internal::Number T>
     constexpr Quaternion<T> versor(const Quaternion<T>& q);
 
-    template<typename T>
+    template<internal::Number T>
     constexpr Quaternion<T> inv(const Quaternion<T>& q);
 
-    template<typename T>
+    template<internal::Number T>
     constexpr Quaternion<T> exp(const Quaternion<T>& q);
 
-    template<typename T>
+    template<internal::Number T>
     constexpr Quaternion<T> log(const Quaternion<T>& q);
 
-    template<typename T>
+    template<internal::Number T>
     constexpr Quaternion<T> log10(const Quaternion<T>& q);
 
-    template<typename T>
+    template<internal::Number T>
     constexpr Quaternion<T> pow(const Quaternion<T>& x, const Quaternion<T>& y);
 
-    template<typename T, typename U>
+    template<internal::Number T, internal::Number U>
     constexpr Quaternion<T> pow(const Quaternion<T>& q, const U& x);
 
-    template<typename T>
+    template<internal::Number T>
     constexpr Quaternion<T> sqrt(const Quaternion<T>& q);
 
-    template<typename T, typename U>
+    template<internal::Number T, internal::Number U>
     constexpr T geodesicNorm(const Quaternion<T>& p, const Quaternion<U>& q);
 
-    template<typename T>
-    bool operator==(const Quaternion<T>& lhs, const Quaternion<T>& rhs);        
+    template<internal::Number T>
+    bool operator==(const Quaternion<T>& lhs, const Quaternion<T>& rhs);
 
-    template<typename T>
-    bool operator!=(const Quaternion<T>& lhs, const Quaternion<T>& rhs);        
+    template<internal::Number T>
+    bool operator!=(const Quaternion<T>& lhs, const Quaternion<T>& rhs);
 
 
     namespace literals{
         constexpr Quaternion<int> operator""_i(unsigned long long arg);
 
         constexpr Quaternion<int> operator""_j(unsigned long long arg);
-        
+
         constexpr Quaternion<int> operator""_k(unsigned long long arg);
-        
+
         constexpr Quaternion<float> operator""_i(long double arg);
 
         constexpr Quaternion<float> operator""_j(long double arg);

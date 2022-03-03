@@ -4,19 +4,22 @@ project(Quaternions VERSION 0.1)
 
 
 add_library(${PROJECT_NAME} INTERFACE)
+
 set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${PROJECT_VERSION})
 
 target_include_directories(${PROJECT_NAME} INTERFACE include)
 
 
-set_target_properties(
-  ${PROJECT_NAME}  
-  PROPERTIES
-    LINKER_LANGUAGE CXX
-    CXX_STANDARD 20
-    CXX_STANDARD_REQUIRED ON
-    CXX_EXTENSIONS OFF
-)
+# set_target_properties(
+#   ${PROJECT_NAME}
+#   PROPERTIES
+#     LINKER_LANGUAGE CXX
+#     CXX_STANDARD 20
+#     CXX_STANDARD_REQUIRED ON
+#     CXX_EXTENSIONS OFF
+# )
+
+target_compile_features(${PROJECT_NAME} INTERFACE cxx_std_20)
 
 
 option(BUILD_TESTS  "build all the units test" On)

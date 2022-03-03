@@ -3,7 +3,7 @@
 #include <Quaternion/quaternion.hpp>
 
 TEST(tests, test0)
-{  
+{
     quaternion::Quaternion<int> q(0, 3, 0, -1);
     std::cout << (q * quaternion::Quaternion<int>(2, 0, 1, 1)).real() << std::endl;
 }
@@ -19,7 +19,7 @@ TEST(arithmetic, multiplication)
 TEST(litterals, litterals)
 {
     using namespace quaternion::literals;
-        
+
     quaternion::Quaternion<int> q = 2 + 1_i + 4_k - 90_j;
     quaternion::Quaternion<int> expectedResult(2, 1, -90, 4);
     EXPECT_EQ(q, expectedResult);
