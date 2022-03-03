@@ -18,3 +18,13 @@ int main(){
 }
 
 ```
+
+# Building
+
+```sh
+~$ git clone https://github.com/Gryfenfer97/Quaternion
+~$ cd Quaternion
+~$ conan install . --install-folder-build
+~$ cmake . -Bbuild
+~$ cmake --build build
+```
